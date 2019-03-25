@@ -13,14 +13,14 @@ block content
               select(class="form-control col-10" name="new_pizza")
                 each pizza in pizzas
                   option(value="#{pizza.name}")= pizza.name + " $" + pizza.price
-              button(class="btn btn-primary col-2")= "Add"
+              button(class="btn btn-primary col-2" id="addPizza")= "Add"
           form(class="form" method="post" action="/save")
             ul
               each pizza in selectedPizzas || []
                 li= pizza.name + " " + pizza.price
                   input(type="hidden" name="pizza" value="#{pizza.name}")
             if typeof selectedPizzas && selectedPizzas.length > 0
-              button(class="btn btn-success w-100")= "Place order"
+              button(class="btn btn-success w-100" id="saveOrder")= "Place order"
                 
 
     div(class="col-6")
@@ -28,7 +28,7 @@ block content
         h3(class="card-header")= "Existing orders"
         div(class="card-body")
           each order, idx in orders
-            div= "Order #" + (idx+1) + " has " + order.pizzas.length + " pizzas"
+            div(class="order")= "Order #" + (idx+1) + " has " + order.pizzas.length + " pizzas"
               a(href="/delete/" + idx)
                 button(type="button", class="close")
                   span

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test:selenium": "PATH=$PATH:./drivers node node_modules/mocha/bin/mocha --timeout 30000 tests"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -12,6 +13,8 @@
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "mocha": "^6.0.2",
+    "morgan": "~1.9.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
   }
 }
