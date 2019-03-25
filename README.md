@@ -46,7 +46,7 @@ Install dependencies:
 npm install
 ```
 
-At this point you should be able to run the web interface by typing
+At this point you should be able to run the web interface by typing in the command below and navigating to http://localhost:3000/
 ```
 npm run start
 ```
