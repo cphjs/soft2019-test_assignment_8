@@ -21,8 +21,11 @@ router.get('/', function(req, res, next) {
   let selectedPizzas = (req.session.selectedPizzas || [])
       .map(p => pizzas.find(pizza => pizza.name == p))
       .filter(Boolean)
-
-  res.render('index', { orders, pizzas, selectedPizzas });
+  if (req.accepts(['text', 'html'])) {    
+    res.render('index', { orders, pizzas, selectedPizzas });
+  } else {
+    res.json({orders, pizzas, selectedPizzas })
+  }
 });
 
 router.post('/add', function (req, res, next) {
@@ -55,6 +58,16 @@ router.post('/save', function(req, res, next) {
   }
 
   res.redirect('/');
+});
+
+router.get('/price', function (req, res, next) {
+  let pizzaName = req.query.pizza;
+  let pizza = pizzas.find(p => p.name == pizzaName);
+  if (pizza === undefined) {
+    res.sendStatus(404);
+  } else {
+    res.json(pizza.price);
+  }
 });
 
 router.get('/delete/:idx', function (req, res, next){ 
